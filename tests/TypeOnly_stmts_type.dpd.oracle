@@ -1,8 +1,8 @@
 N: 19 "mylen" [opaque=no, body=yes, kind=cnst, prop=no, path="dpdgraph.tests.TypeOnly", ];
 N: 20 "mylen_zero" [opaque=yes, body=yes, kind=cnst, prop=yes, path="dpdgraph.tests.TypeOnly", ];
-N: 22 "eq" [kind=inductive, prop=no, path="Corelib.Init.Logic", ];
-N: 18 "mylist" [kind=inductive, prop=no, path="dpdgraph.tests.TypeOnly", ];
-N: 21 "nat" [kind=inductive, prop=no, path="Corelib.Init.Datatypes", ];
+N: 22 "eq" [constructors="eq_refl", kind=inductive, prop=no, path="Corelib.Init.Logic", ];
+N: 18 "mylist" [constructors="mynil mycons", kind=inductive, prop=no, path="dpdgraph.tests.TypeOnly", ];
+N: 21 "nat" [constructors="O S", kind=inductive, prop=no, path="Corelib.Init.Datatypes", ];
 N: 24 "mynil" [kind=construct, prop=no, path="dpdgraph.tests.TypeOnly", ];
 N: 23 "O" [kind=construct, prop=no, path="Corelib.Init.Datatypes", ];
 E: 18 21 [weight=2, ];

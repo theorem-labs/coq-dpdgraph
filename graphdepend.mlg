@@ -235,6 +235,20 @@ end = struct
     let acc = add_cnst_body_attrib acc cnst in
     add_cnst_opaque_attrib acc cnst
 
+  let add_constructor_attrib acc (mind, n) =
+    let mib = Searchdepend.ModLookup.lookup_mind mind in
+    let indbody = mib.Declarations.mind_packets.(n) in
+    let constructors =
+      indbody.Declarations.mind_consnames
+      |> Array.to_list
+      |> List.map Names.Id.to_string
+    in
+    match constructors with
+    | [] -> acc
+    | _ ->
+        let constructors = "\"" ^ String.concat " " constructors ^ "\"" in
+        ("constructors", constructors)::acc
+
   let add_gref_attrib acc gref id =
     let is_prop = is_prop gref id in
     let acc = ("prop", if is_prop then "yes" else "no")::acc in
@@ -242,9 +256,9 @@ end = struct
       | Names.GlobRef.ConstRef cnst ->
           let acc = ("kind", "cnst")::acc in
             add_cnst_attrib acc cnst
-      | Names.GlobRef.IndRef _ ->
+      | Names.GlobRef.IndRef ind ->
           let acc = ("kind", "inductive")::acc in
-            acc
+            add_constructor_attrib acc ind
       | Names.GlobRef.ConstructRef _ ->
           let acc = ("kind", "construct")::acc in
             acc

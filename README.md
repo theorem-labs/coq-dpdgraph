@@ -300,6 +300,7 @@ node_attribute :
    | kind=[cnst|inductive|construct]
    | prop=[yes|no]
    | path="m0.m1.m2"
+   | constructors="c0 c1 ..."
    | body=[yes|no]
    | opaque=[yes|no]
    | prim=[yes|no]
@@ -330,4 +331,3 @@ Each tool can then pick the attributes that it is able to handle;
 Also see:
 - [CHANGES](CHANGES.md)
 - [distributed versions](https://anne.pacalet.fr/dev/dpdgraph/)
-
