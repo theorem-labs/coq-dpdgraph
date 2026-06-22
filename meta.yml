@@ -327,6 +327,7 @@ documentation: |
      | kind=[cnst|inductive|construct]
      | prop=[yes|no]
      | path="m0.m1.m2"
+     | constructors="c0 c1 ..."
      | body=[yes|no]
   
   edge : "E: "  node_id node_id edge_attributes ';'
