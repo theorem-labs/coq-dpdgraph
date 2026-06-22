@@ -2,9 +2,9 @@ N: 439 "andb" [opaque=no, body=yes, kind=cnst, prop=no, path="Corelib.Init.Datat
 N: 438 "land" [opaque=no, body=yes, kind=cnst, prop=no, path="Stdlib.Arith.PeanoNat.Nat", ];
 N: 437 "land_spec" [opaque=yes, body=yes, kind=cnst, prop=yes, path="Stdlib.Arith.PeanoNat.Nat.PrivateImplementsBitwiseSpec", ];
 N: 440 "testbit" [opaque=no, body=yes, kind=cnst, prop=no, path="Stdlib.Arith.PeanoNat.Nat", ];
-N: 442 "bool" [constructors="true false", kind=inductive, prop=no, path="Corelib.Init.Datatypes", ];
-N: 443 "eq" [constructors="eq_refl", kind=inductive, prop=no, path="Corelib.Init.Logic", ];
-N: 441 "nat" [constructors="O S", kind=inductive, prop=no, path="Corelib.Init.Datatypes", ];
+N: 442 "bool" [constructors=["true","false"], kind=inductive, prop=no, path="Corelib.Init.Datatypes", ];
+N: 443 "eq" [constructors=["eq_refl"], kind=inductive, prop=no, path="Corelib.Init.Logic", ];
+N: 441 "nat" [constructors=["O","S"], kind=inductive, prop=no, path="Corelib.Init.Datatypes", ];
 E: 437 438 [weight=1, ];
 E: 437 439 [weight=1, ];
 E: 437 440 [weight=3, ];

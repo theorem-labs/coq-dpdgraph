@@ -235,9 +235,17 @@ end = struct
     let acc = add_cnst_body_attrib acc cnst in
     add_cnst_opaque_attrib acc cnst
 
-  let add_constructor_attrib acc (mind, n) =
+  let quote_string s = "\"" ^ String.escaped s ^ "\""
+
+  let string_list_attrib l =
+    "[" ^ String.concat "," (List.map quote_string l) ^ "]"
+
+  let lookup_inductive_body (mind, n) =
     let mib = Searchdepend.ModLookup.lookup_mind mind in
-    let indbody = mib.Declarations.mind_packets.(n) in
+    mib.Declarations.mind_packets.(n)
+
+  let add_constructor_attrib acc (mind, n) =
+    let indbody = lookup_inductive_body (mind, n) in
     let constructors =
       indbody.Declarations.mind_consnames
       |> Array.to_list
@@ -246,8 +254,13 @@ end = struct
     match constructors with
     | [] -> acc
     | _ ->
-        let constructors = "\"" ^ String.concat " " constructors ^ "\"" in
+        let constructors = string_list_attrib constructors in
         ("constructors", constructors)::acc
+
+  let add_inductive_attrib acc ind =
+    let indbody = lookup_inductive_body ind in
+    let inductive = Names.Id.to_string indbody.Declarations.mind_typename in
+    ("inductive", quote_string inductive)::acc
 
   let add_gref_attrib acc gref id =
     let is_prop = is_prop gref id in
@@ -259,9 +272,9 @@ end = struct
       | Names.GlobRef.IndRef ind ->
           let acc = ("kind", "inductive")::acc in
             add_constructor_attrib acc ind
-      | Names.GlobRef.ConstructRef _ ->
+      | Names.GlobRef.ConstructRef (ind, _) ->
           let acc = ("kind", "construct")::acc in
-            acc
+            add_inductive_attrib acc ind
       | Names.GlobRef.VarRef _ -> assert false
     in acc
 
