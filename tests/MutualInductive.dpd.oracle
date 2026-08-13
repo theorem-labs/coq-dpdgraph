@@ -1,0 +1,8 @@
+N: 4 "expr" [constructors=["OfVal"], kind=inductive, prop=no, path="MutualInductive", ];
+N: 2 "val" [constructors=["RecV"], kind=inductive, prop=no, path="MutualInductive", ];
+N: 3 "OfVal" [inductive="expr", kind=construct, prop=no, path="MutualInductive", ];
+N: 1 "RecV" [inductive="val", kind=construct, prop=no, path="MutualInductive", ];
+E: 1 4 [weight=1, ];
+E: 2 4 [weight=1, ];
+E: 3 2 [weight=1, ];
+E: 4 2 [weight=1, ];
